@@ -35,11 +35,37 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <div class="mr-5">
-              <v-btn icon color="white">
-                <v-badge color="indigo darken-1" class="text--white" :value="cart" :content="cart" overlap>
-                <v-icon>fas fa-shopping-cart</v-icon>
-                </v-badge>
-              </v-btn>
+              
+              <v-menu bottom left>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn icon color="white" @click="isInCart()" v-bind="attrs" v-on="on">
+                    <v-badge color="indigo darken-1" class="text--white" :value="cart.length" :content="cart.length" overlap>
+                    <v-icon>fas fa-shopping-cart</v-icon>
+                    </v-badge>
+                  </v-btn>
+                </template>
+                <v-card>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-avatar tile width="70" height="70">
+                      <v-img src="img/7.jpg"></v-img>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-row justify="space-between">
+                        <v-col>
+                          <v-list-item-title class="">work desk for computer or laptop</v-list-item-title>
+                          <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
+                        </v-col>
+                        <v-col class="d-flex">
+                          <v-btn depressed small class="mr-3 white--text blue lighten-1">Pay</v-btn>
+                          <v-btn depressed small class="white--text red darken-1">Remove</v-btn>
+                        </v-col>
+                      </v-row>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-card>
+              </v-menu>
             </div>
           </v-toolbar>
         </nav>
@@ -48,13 +74,14 @@
         <v-divider></v-divider>
         <v-container class="d-flex flex-wrap justify-space-between grey lighten-5 mt-5">
           <template>
-            <v-card class="mx-auto" max-width="270" max-height="auto" v-for="product in products" :key="product.title">
+            <v-card class="mx-auto my-4" max-width="270" max-height="auto" v-for="product in products" :key="product.title">
               <v-carousel hide-delimiters height="230" show-arrows-on-hover>
                 <v-carousel-item v-for="img in product.imgs" :key="img.src">
                   <v-img  :src="img.src"  height="210"></v-img>
                 </v-carousel-item>
               </v-carousel>
               <v-card-title><a @click="overlay = !overlay" class="text-decoration-none" color="light-blue darken-3">{{ product.title }}</a></v-card-title>
+              <v-card-subtitle class="pb-0">by {{ product.brand }} - {{ product.region }}</v-card-subtitle>
               <v-card-text class="d-flex">
                 <v-rating :value="product.value"  color="amber"  dense  half-increments  readonly  size="14"></v-rating>
                 <div class="grey--text ml-4">{{ product.value }} ({{ product.sell }})</div>                  
@@ -64,17 +91,14 @@
                   <!-- <v-card-subtitle>  Lorem ipsum dolor sit, amet consectetur adicing elit. Tenetur excepturi fuga labore sit de imagebitis nostrum. . .</v-card-subtitle> -->
                 <v-divider class="mx-4"></v-divider>
                 <v-card-actions class="d-flex justify-space-around">
-                  <v-btn text color="light-blue darken-3" class="tombol">{{ product.order }}</v-btn>
-                  <v-btn text @click="cart++">
+                  <v-btn text color="light-blue darken-3" class="tombol" @click="order()">{{ product.order }}</v-btn>
+                  <v-btn text @click="addToCart()">
                     {{ product.cart }}
                   </v-btn>
                 </v-card-actions>
               </v-card>
               <v-overlay :value="overlay" opacity="0.5">
-                <v-btn
-                  icon
-                  @click="overlay = false"
-                >
+                <v-btn icon @click="overlay = false">
                   <v-icon>mdi-close</v-icon>
                 </v-btn>
               </v-overlay>
