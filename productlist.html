@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>Products List</title>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <nav>
+          <v-toolbar flat app color="light-blue">
+            <v-toolbar-title class="text-uppercase white--text ml-5">
+              <span class="font-weight-light">Living</span>
+              <span>Room</span>
+            </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-title class="white--text">
+              <span class="font-weight-light">Home</span>
+                <v-menu bottom origin="center center" transition="scale-transition">
+                  <template v-slot:activator="{ on, attrs }">
+                    <span class="font-weight-light mx-5" color="primary" dark v-bind="attrs" v-on="on">Products</span>
+                  </template>
+                  <v-list>
+                    <v-list-item v-for="(item, i) in items" :key="i" @click="">
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+              <span class="font-weight-light">About</span>
+            </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <div class="mr-5">
+              <v-btn icon color="white">
+                <v-badge color="indigo darken-1" class="text--white" :value="cart" :content="cart" overlap>
+                <v-icon>fas fa-shopping-cart</v-icon>
+                </v-badge>
+              </v-btn>
+            </div>
+          </v-toolbar>
+        </nav>
+        <v-container>
+        <h1>Living Room Products</h1>    
+        <v-divider></v-divider>
+        <v-container class="d-flex flex-wrap justify-space-between grey lighten-5 mt-5">
+          <template>
+            <v-card class="mx-auto" max-width="270" max-height="auto" v-for="product in products" :key="product.title">
+              <v-carousel hide-delimiters height="230" show-arrows-on-hover>
+                <v-carousel-item v-for="img in product.imgs" :key="img.src">
+                  <v-img  :src="img.src"  height="210"></v-img>
+                </v-carousel-item>
+              </v-carousel>
+              <v-card-title><a @click="overlay = !overlay" class="text-decoration-none" color="light-blue darken-3">{{ product.title }}</a></v-card-title>
+              <v-card-text class="d-flex">
+                <v-rating :value="product.value"  color="amber"  dense  half-increments  readonly  size="14"></v-rating>
+                <div class="grey--text ml-4">{{ product.value }} ({{ product.sell }})</div>                  
+                <v-spacer></v-spacer>
+                <h2 class="font-weight-bold" color="blue-grey darken-2">{{ product.price }}</h2>
+              </v-card-text>
+                  <!-- <v-card-subtitle>  Lorem ipsum dolor sit, amet consectetur adicing elit. Tenetur excepturi fuga labore sit de imagebitis nostrum. . .</v-card-subtitle> -->
+                <v-divider class="mx-4"></v-divider>
+                <v-card-actions class="d-flex justify-space-around">
+                  <v-btn text color="light-blue darken-3" class="tombol">{{ product.order }}</v-btn>
+                  <v-btn text @click="cart++">
+                    {{ product.cart }}
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+              <v-overlay :value="overlay" opacity="0.5">
+                <v-btn
+                  icon
+                  @click="overlay = false"
+                >
+                  <v-icon>mdi-close</v-icon>
+                </v-btn>
+              </v-overlay>
+          </template>    
+        </v-container>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>
