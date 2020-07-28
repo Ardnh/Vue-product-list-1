@@ -10,7 +10,7 @@ new Vue({
                 { title: 'Lamp' },
                 { title: 'Chair' },
                 { title: 'Sofa' },
-                { title: 'Bedroom' },
+                { title: 'Table' },
               ],
             products: [
                 {
