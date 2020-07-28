@@ -12,3 +12,5 @@ Jika kita menggunakan template bawaan dari vuetifyjs maka akan otomatis langsung
 6. Paste ke dalam file HTML kita dan Vuejs X Vuetifyjs siap digunakan
 
 Dan jangan lupa rajin rajin baca dokumentasi dan praktek oke
+
+#ini baru di push dari local
