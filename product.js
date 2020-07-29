@@ -5,7 +5,7 @@ new Vue({
         return {
             show:false,
             overlay: false,
-            cart: [],
+            carts: [],
             items: [
                 { title: 'Lamp' },
                 { title: 'Chair' },
@@ -14,7 +14,7 @@ new Vue({
               ],
             products: [
                 {
-                    id: '1',
+                    id: 1,
                     imgs:[
                         {src:'img/9.jpg'},
                         {src:'img/8.jpg'},
@@ -30,7 +30,7 @@ new Vue({
                     region: 'Swiss'
                 },
                 {
-                    id: '2',
+                    id: 2,
                     imgs:[
                         {src:'img/10.jpg'},
                         {src:'img/8.jpg'},
@@ -46,7 +46,7 @@ new Vue({
                     region: 'US'
                 },
                 {
-                    id: '3',
+                    id: 3,
                     imgs:[
                         {src:'img/8.jpg'},
                         {src:'img/5.jpg'},
@@ -62,7 +62,7 @@ new Vue({
                     region: 'Swiss'
                 },
                 {
-                    id: '4',
+                    id: 4,
                     imgs:[
                         {src:'img/7.jpg'},
                         {src:'img/8.jpg'},
@@ -83,11 +83,12 @@ new Vue({
     methods:{
         // memasukan data ke dalam array cart
         addToCart(product){
-            this.cart.push(product)
-
+            this.carts.push(product)
         },
-        isInCart(product){
-            const productItem = this.cart.find(item => item.id === product.id)
-        } 
+        isInCart(){
+            if(this.carts.length === 0){
+                alert("Cart Masih Kosong !!")
+            }
+        }
     }
   })
