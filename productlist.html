@@ -40,7 +40,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn icon color="white"  v-bind="attrs" v-on="on">
                     <v-badge color="indigo darken-1" class="text--white" :value="carts.length" :content="carts.length" overlap>
-                    <v-icon @click="isInCart()">fas fa-shopping-cart</v-icon>
+                    <v-icon>fas fa-shopping-cart</v-icon>
                     </v-badge>
                   </v-btn>
                 </template>
@@ -70,9 +70,16 @@
           </v-toolbar>
         </nav>
         <v-container>
-        <h1>Living Room Products</h1>    
+        <v-row justify="center">
+          <v-col cols="12">
+            <h1 class="text-center">Living Room Products</h1>
+          </v-col>
+          <v-col cols="7">
+            <h4 class="text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias ut error dolorum amet ipsam accusantium, Lorem ipsum dolor sit amet consectetur adipisicing elit</h4>   
+          </v-col>
+        </v-row>
         <v-divider></v-divider>
-        <v-container class="d-flex flex-wrap justify-space-between grey lighten-5 mt-5">
+        <v-container class="d-flex flex-wrap justify-space-between grey lighten-4 mt-5">
           <template>
             <v-card class="mx-auto my-4" max-width="270" max-height="auto" v-for="product in products" :key="product.id">
               <v-carousel hide-delimiters height="230" show-arrows-on-hover>
@@ -80,7 +87,9 @@
                   <v-img  :src="img.src"  height="210"></v-img>
                 </v-carousel-item>
               </v-carousel>
-              <v-card-title><a @click="overlay = !overlay" class="text-decoration-none" color="light-blue darken-3">{{ product.title }}</a></v-card-title>
+              <v-card-title >
+                <a @click="overlay = !overlay" class="text-decoration-none" color="blue darken-4">{{ product.title }}</a>
+              </v-card-title>
               <v-card-subtitle class="pb-0">by {{ product.brand }} - {{ product.region }}</v-card-subtitle>
               <v-card-text class="d-flex">
                 <v-rating :value="product.value"  color="amber"  dense  half-increments  readonly  size="14"></v-rating>
@@ -97,11 +106,30 @@
                   </v-btn>
                 </v-card-actions>
               </v-card>
-              <v-overlay :value="overlay" opacity="0.5">
-                <v-btn icon @click="overlay = false">
+              <v-overlay :value="overlay" opacity="0.6">
+                <v-card color="#ffffff" class="d-flex">
+                  <v-row>
+                    <v-col cols="6" color="light-blue">
+                      <v-card max-width="350" class="mx-auto">
+                        <v-carousel  hide-delimiters height="500" show-arrows-on-hover>
+                          <v-carousel-item>
+                            <v-img  src="img/8.jpg" height="500" width="100%"></v-img>
+                          </v-carousel-item>
+                        </v-carousel>
+                      </v-card>
+                    </v-col>
+                    <v-col cols="6">
+                        <v-card class="mx-auto">
+                          <h1>Lorem ipsum dolor sit amet.</h1>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                </v-card>
+                <v-btn icon @click="overlay = false" top right>
                   <v-icon>mdi-close</v-icon>
                 </v-btn>
               </v-overlay>
+              
           </template>    
         </v-container>
         </v-container>

@@ -7,7 +7,7 @@ new Vue({
             overlay: false,
             carts: [],
             items: [
-                { title: 'Lamp' },
+                { title: 'Lighting' },
                 { title: 'Chair' },
                 { title: 'Sofa' },
                 { title: 'Table' },
@@ -85,10 +85,6 @@ new Vue({
         addToCart(product){
             this.carts.push(product)
         },
-        isInCart(){
-            if(this.carts.length === 0){
-                alert("Cart Masih Kosong !!")
-            }
-        }
+        
     }
   })
