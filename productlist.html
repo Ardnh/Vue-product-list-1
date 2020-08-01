@@ -12,6 +12,7 @@
   <div id="app">
     <v-app>
       <v-main>
+        <!-- Navbar -->
         <nav>
           <v-toolbar flat app color="light-blue">
             <v-toolbar-title class="text-uppercase white--text ml-5">
@@ -35,7 +36,6 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <div class="mr-5">
-              
               <v-menu bottom left>
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn icon color="white"  v-bind="attrs" v-on="on">
@@ -69,6 +69,7 @@
             </div>
           </v-toolbar>
         </nav>
+        <!-- End Navbar -->
         <v-container>
         <v-row justify="center">
           <v-col cols="12">
@@ -79,25 +80,25 @@
           </v-col>
         </v-row>
         <v-divider></v-divider>
+        <!-- Main Content -->
         <v-container class="d-flex flex-wrap justify-space-between grey lighten-4 mt-5">
           <template>
-            <v-card class="mx-auto my-4" max-width="270" max-height="auto" v-for="product in products" :key="product.id">
+            <v-card tile class="mx-auto my-4" max-width="270" max-height="auto" v-for="product in products" :key="product.id">
               <v-carousel hide-delimiters height="230" show-arrows-on-hover>
                 <v-carousel-item v-for="img in product.imgs" :key="img.src">
-                  <v-img  :src="img.src"  height="210"></v-img>
+                  <v-img  :src="img.src"  height="230"></v-img>
                 </v-carousel-item>
               </v-carousel>
-              <v-card-title >
-                <a @click="overlay = !overlay" class="text-decoration-none" color="blue darken-4">{{ product.title }}</a>
+              <v-card-title>
+                <a class="text-decoration-none" color="blue darken-4">{{ product.title }}</a>
               </v-card-title>
               <v-card-subtitle class="pb-0">by {{ product.brand }} - {{ product.region }}</v-card-subtitle>
               <v-card-text class="d-flex">
-                <v-rating :value="product.value"  color="amber"  dense  half-increments  readonly  size="14"></v-rating>
+                <v-rating :value="product.value"  color="amber" dense half-increments readonly size="14"></v-rating>
                 <div class="grey--text ml-4">{{ product.value }} ({{ product.sell }})</div>                  
                 <v-spacer></v-spacer>
                 <h2 class="font-weight-bold" color="blue-grey darken-2">{{ product.price }}</h2>
               </v-card-text>
-                  <!-- <v-card-subtitle>  Lorem ipsum dolor sit, amet consectetur adicing elit. Tenetur excepturi fuga labore sit de imagebitis nostrum. . .</v-card-subtitle> -->
                 <v-divider class="mx-4"></v-divider>
                 <v-card-actions class="d-flex justify-space-around">
                   <v-btn text color="light-blue darken-3" class="tombol" @click="order()">{{ product.order }}</v-btn>
@@ -106,30 +107,6 @@
                   </v-btn>
                 </v-card-actions>
               </v-card>
-              <v-overlay :value="overlay" opacity="0.6">
-                <v-card color="#ffffff" class="d-flex">
-                  <v-row>
-                    <v-col cols="6" color="light-blue">
-                      <v-card max-width="350" class="mx-auto">
-                        <v-carousel  hide-delimiters height="500" show-arrows-on-hover>
-                          <v-carousel-item>
-                            <v-img  src="img/8.jpg" height="500" width="100%"></v-img>
-                          </v-carousel-item>
-                        </v-carousel>
-                      </v-card>
-                    </v-col>
-                    <v-col cols="6">
-                        <v-card class="mx-auto">
-                          <h1>Lorem ipsum dolor sit amet.</h1>
-                        </v-card>
-                      </v-col>
-                    </v-row>
-                </v-card>
-                <v-btn icon @click="overlay = false" top right>
-                  <v-icon>mdi-close</v-icon>
-                </v-btn>
-              </v-overlay>
-              
           </template>    
         </v-container>
         </v-container>

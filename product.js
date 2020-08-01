@@ -4,8 +4,8 @@ new Vue({
     data(){
         return {
             show:false,
-            overlay: false,
             carts: [],
+            detail:[],
             items: [
                 { title: 'Lighting' },
                 { title: 'Chair' },
