@@ -4,6 +4,7 @@ new Vue({
     data(){
         return {
             show:false,
+            dialog: false,
             carts: [],
             detail:[],
             items: [
@@ -84,7 +85,6 @@ new Vue({
         // memasukan data ke dalam array cart
         addToCart(product){
             this.carts.push(product)
-        },
-        
+        }
     }
   })
