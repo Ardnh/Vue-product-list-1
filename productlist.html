@@ -3,9 +3,15 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style>
+    *{
+      font-family: 'roboto', 'nunito';
+    }
+  </style>
   <title>Products List</title>
 </head>
 <body>
@@ -17,10 +23,10 @@
           <v-toolbar flat app color="light-blue">
             <v-toolbar-title class="text-uppercase white--text ml-5">
               <span class="font-weight-light">Living</span>
-              <span>Room</span>
+              <span class="font-weight-bold">Room</span>
             </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-toolbar-title class="white--text">
+            
+            <v-toolbar-title class="white--text mx-auto">
               <span class="font-weight-light">Home</span>
                 <v-menu bottom origin="center center" transition="scale-transition">
                   <template v-slot:activator="{ on, attrs }">
@@ -34,7 +40,7 @@
                 </v-menu>
               <span class="font-weight-light">About</span>
             </v-toolbar-title>
-            <v-spacer></v-spacer>
+            
             <div class="mr-5">
               <v-menu bottom left>
                 <template v-slot:activator="{ on, attrs }">
@@ -90,7 +96,7 @@
                 </v-carousel-item>
               </v-carousel>
               <v-card-title>
-                <a class="text-decoration-none" color="blue darken-4" @click="dialog = !dialog">{{ product.title }}</a>
+                <a class="text-decoration-none font-weight-medium" color="blue darken-4" @click="addtoDetail(product)">{{ product.title }}</a>
               </v-card-title>
               <v-card-subtitle class="pb-0">by {{ product.brand }} - {{ product.region }}</v-card-subtitle>
               <v-card-text class="d-flex">
@@ -101,8 +107,8 @@
               </v-card-text>
                 <v-divider class="mx-4"></v-divider>
                 <v-card-actions class="d-flex justify-space-around">
-                  <v-btn text color="light-blue darken-3" class="tombol" @click="order()">{{ product.order }}</v-btn>
-                  <v-btn text @click="addToCart(product)">
+                  <v-btn text color="light-blue darken-3" class="font-weight-medium" @click="order()">{{ product.order }}</v-btn>
+                  <v-btn text class="font-weight-medium" @click="addToCart(product)">
                     {{ product.cart }}
                   </v-btn>
                 </v-card-actions>
@@ -140,7 +146,7 @@
                                 <p class="">by IKEA - swiss</p>
                                 <div class="d-flex py-2">
                                   <v-rating value="3.5"  color="amber" dense half-increments readonly size="20"></v-rating>
-                                  <div class="grey--text ml-4">3.5 (150)</div> 
+                                  <div class="grey--text ml-4"><p>3.5 (150)</p></div> 
                                 </div>
                                 <p class="text--secondary"> quantity</p>
                               </v-container>

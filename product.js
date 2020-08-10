@@ -85,6 +85,12 @@ new Vue({
         // memasukan data ke dalam array cart
         addToCart(product){
             this.carts.push(product)
+        },
+        // push data ke dalam array detail
+        addtoDetail(product){
+            this.detail.push(product)
+            console.log(product)
+
         }
     }
   })
