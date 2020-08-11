@@ -6,7 +6,7 @@ new Vue({
             show:false,
             dialog: false,
             carts: [],
-            detail:[],
+            details:[],
             items: [
                 { title: 'Lighting' },
                 { title: 'Chair' },
@@ -33,8 +33,8 @@ new Vue({
                 {
                     id: 2,
                     imgs:[
-                        {src:'img/10.jpg'},
-                        {src:'img/8.jpg'},
+                        {src:'img/12.jpg'},
+                        {src:'img/9.jpg'},
                     ],
                     title: 'A chair with four pillows four pillows',
                     value: 3.5,
@@ -49,8 +49,8 @@ new Vue({
                 {
                     id: 3,
                     imgs:[
-                        {src:'img/8.jpg'},
-                        {src:'img/5.jpg'},
+                        {src:'img/9.jpg'},
+                        {src:'img/12.jpg'},
                     ],
                     title: 'relaxing sofa for in the family room',
                     value: 1.5,
@@ -88,9 +88,31 @@ new Vue({
         },
         // push data ke dalam array detail
         addtoDetail(product){
-            this.detail.push(product)
+            this.details.push(product)
             console.log(product)
 
+            this.dialog = true
+        },
+        // close dialog
+        close(){
+            this.details = []
+            this.dialog = false
+        },
+        // pay
+        pay(){
+            Swal.fire(
+                'Thank you for order',
+                'Enjoy your item',
+                'success'
+              )
+        },
+        // order
+        order(){
+            Swal.fire(
+                'Thank you for order',
+                'Enjoy your item',
+                'success'
+              )
         }
     }
   })

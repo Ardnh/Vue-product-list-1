@@ -63,7 +63,7 @@
                           <v-list-item-subtitle>by {{ cart.brand }}</v-list-item-subtitle>
                         </v-col>
                         <v-col class="d-flex" cols="5">
-                          <v-btn depressed small class="mr-3 white--text blue lighten-1">Pay</v-btn>
+                          <v-btn depressed small color="light-blue" class="mr-3 white--text blue lighten-1" @click="pay()">Pay</v-btn>
                           <v-btn depressed small class="white--text red darken-1">Remove</v-btn>
                         </v-col>
                       </v-row>
@@ -79,11 +79,15 @@
         <v-container>
         <v-row justify="center">
           <v-col cols="12">
-            <h1 class="text-center">Living Room Products</h1>
+            <h1 class="text-center text--secondary">Living Room Products</p></h1>
+            <div class="text-center">
+                <v-chip class="ma-1" color="primary" @click="">Lighting</v-chip>
+                <v-chip class="ma-1" color="primary" @click="">Table</v-chip>
+                <v-chip class="ma-1" color="primary" @click="">Sofa</v-chip>
+                <v-chip class="ma-1" color="primary" @click="">Chair</v-chip>
+            </div>
           </v-col>
-          <v-col cols="7">
-            <h4 class="text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias ut error dolorum amet ipsam accusantium, Lorem ipsum dolor sit amet consectetur adipisicing elit</h4>   
-          </v-col>
+          
         </v-row>
         <v-divider></v-divider>
         <!-- Main Content -->
@@ -122,51 +126,67 @@
                       <v-card tile>
                         <v-card-title>
                           <v-spacer></v-spacer>
-                          <v-btn icon @click="dialog = false">
+                          <v-btn icon @click="close()">
                             <v-icon>fas fa-times</v-icon>
                           </v-btn>
                         </v-card-title>
                         <v-card-text style="height: 500px;">
-                          <v-row>
-                            <v-col col="4">
-                              <v-card max-width="300" class="mx-auto" tile outlined>
-                              
-                                  <v-carousel height="420" hide-delimiters show-arrows-on-hover>
-                                    <v-carousel-item>
-                                      <v-img src="img/7.jpg" ></v-img>
-                                      <v-img src="img/8.jpg" ></v-img>
-                                    </v-carousel-item>
-                                  </v-carousel>
+                          <template  v-for="detail in details" :key="detail.id">
+                            <v-row class="align-center">
+                              <v-col col="4">
+                                <v-card max-width="300" class="mx-auto" tile outlined>
                                 
-                              </v-card>
-                            </v-col>
-                            <v-col col="8">
-                              <v-container height="420" width="300" class="align-end">
-                                <p class="headline font-weight-bold">flower vase for a more comfortable room</p>
-                                <p class="">by IKEA - swiss</p>
-                                <div class="d-flex py-2">
-                                  <v-rating value="3.5"  color="amber" dense half-increments readonly size="20"></v-rating>
-                                  <div class="grey--text ml-4"><p>3.5 (150)</p></div> 
-                                </div>
-                                <p class="text--secondary"> quantity</p>
-                              </v-container>
-                            </v-col>
-                          </v-row>
+                                    <v-carousel height="420" hide-delimiters show-arrows-on-hover>
+                                      <v-carousel-item v-for="img in detail.imgs" :key="img.src">
+                                        <v-img :src="img.src" ></v-img>
+                                      </v-carousel-item>
+                                    </v-carousel>
+                                  
+                                </v-card>
+                              </v-col>
+                              <v-col col="8">
+                                <v-container height="420" width="300" class="">
+                                  <p class="headline font-weight-bold">{{ detail.title }}</p>
+                                  <p class="">by {{ detail.brand }} - {{ detail.region }}</p>
+                                  <div class="d-flex py-2">
+                                    <v-rating :value="detail.value"  color="amber" dense half-increments readonly size="20"></v-rating>
+                                    <div class="grey--text ml-4"><p>{{ detail.value}} ({{ detail.sell }})</p></div> 
+                                  </div>
+                                  <v-row>
+                                    <v-col>
+                                      <v-btn outlined color="light-blue" block @click="addToCart(detail)">Add to Cart</v-btn>
+                                    </v-col>
+                                    <v-col>
+                                      <v-btn color="light-blue" class="white--text" block @click="pay()">Pay</v-btn>
+                                    </v-col>
+                                  </v-row>
+                                </v-container>
+                              </v-col>
+                            </v-row>
+                          </template>
+
                           <v-row>
                             <v-col col="8" >
                               <v-container class="justify-center">
-                                <h1>this is space for description product</h1>
+                                <h1>this is space for product description</h1>
                               </v-container>
                               <v-divider></v-divider>
                               <v-container>
-                                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, id! Repellat magni nobis consectetur expedita reiciendis doloremque illum, tenetur unde totam laudantium corporis quasi adipisci accusantium mollitia, pariatur aliquam cumque quidem corrupti quis dolore. Eligendi, sequi laboriosam, totam incidunt asperiores recusandae ducimus doloribus odio minus ipsum sapiente animi quidem porro!</h3>
+                                <h3 class="font-weight-regular">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, id! Repellat magni nobis consectetur expedita reiciendis doloremque illum, tenetur unde totam laudantium corporis quasi adipisci accusantium mollitia, pariatur aliquam cumque quidem corrupti quis dolore. Eligendi, sequi laboriosam, totam incidunt asperiores recusandae ducimus doloribus odio minus ipsum sapiente animi quidem porro!</h3>
+                              </v-container>
+                              <v-container class="justify-center mt-">
+                                <h1>this is space for product reviews</h1>
+                              </v-container>
+                              <v-divider></v-divider>
+                              <v-container>
+                                <h3 class="font-weight-regular">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, id! Repellat magni nobis consectetur expedita reiciendis doloremque illum, tenetur unde totam laudantium corporis quasi adipisci accusantium mollitia, pariatur aliquam cumque quidem corrupti quis dolore. Eligendi, sequi laboriosam, totam incidunt asperiores recusandae ducimus doloribus odio minus ipsum sapiente animi quidem porro!</h3>
                               </v-container>
                             </v-col>
                           </v-row>
                         </v-card-text>
                         <v-divider class="mx-4"></v-divider>
                         <v-card-actions class="justify-center">
-                          <v-btn color="red" class="white--text" @click="dialog = false" text>Cancel</v-btn>
+                          <v-btn color="red" class="white--text" @click="close()" text>Cancel</v-btn>
                           <v-btn color="light-blue" class="white--text" @click="pay()">Pay</v-btn>
                         </v-card-actions>
                       </v-card>
@@ -184,6 +204,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="product.js"></script>
 </body>
 </html>
