@@ -89,7 +89,6 @@ new Vue({
         // push data ke dalam array detail
         addtoDetail(product){
             this.details.push(product)
-            console.log(product)
 
             this.dialog = true
         },
