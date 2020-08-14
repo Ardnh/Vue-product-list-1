@@ -99,12 +99,15 @@ new Vue({
             this.dialog = false
         },
         // pay
-        pay(){
+        pay(cart){
             Swal.fire(
                 'Thank you for order',
                 'Enjoy your item',
                 'success'
               )
+
+            this.carts = this.carts.filter(item => item.id !== cart.id)
+
         },
         // order
         order(){
@@ -113,6 +116,10 @@ new Vue({
                 'Enjoy your item',
                 'success'
               )
+        },
+        // remove
+        removeCart(cart){
+            this.carts = this.carts.filter(item => item.id !== cart.id)
         }
     }
   })

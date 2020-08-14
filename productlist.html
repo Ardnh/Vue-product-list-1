@@ -53,8 +53,8 @@
                 <v-card tile>
                 <v-list>
                   <v-list-item v-for="cart in carts" :key="cart.id" >
-                    <v-list-item-avatar tile width="65" height="65">
-                      <v-img src="img/8.jpg"></v-img>
+                    <v-list-item-avatar tile width="65" height="65" v-for="img in cart.imgs[0]" :key="img.src">
+                      <v-img :src="img"></v-img>
                     </v-list-item-avatar>
                     <v-list-item-content>
                       <v-row justify="space-between">
@@ -63,8 +63,8 @@
                           <v-list-item-subtitle>by {{ cart.brand }}</v-list-item-subtitle>
                         </v-col>
                         <v-col class="d-flex" cols="5">
-                          <v-btn depressed small color="light-blue" class="mr-3 white--text blue lighten-1" @click="pay()">Pay</v-btn>
-                          <v-btn depressed small class="white--text red darken-1">Remove</v-btn>
+                          <v-btn depressed small color="light-blue" class="mr-3 white--text blue lighten-1" @click="pay(cart)">Pay</v-btn>
+                          <v-btn depressed small class="white--text red darken-1" @click="removeCart(cart)">Remove</v-btn>
                         </v-col>
                       </v-row>
                     </v-list-item-content>
@@ -202,8 +202,11 @@
     </v-app>
   </div>
 
+  <!-- vuejs -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <!-- vuetify -->
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <!-- sweetalert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="product.js"></script>
 </body>
